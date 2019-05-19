@@ -2,10 +2,36 @@
 
 This is a collection of Haskell's WATs
 
+## Eq Double
+
+```
+Prelude> let nan = read "NaN" :: Double
+Prelude> nan == nan
+False
+Prelude> nan /= nan
+True
+```
+
+## Ord Double
+
+```
+Prelude> let nan = read "NaN" :: Double
+Prelude> nan >= nan
+False
+Prelude> nan > nan
+False
+Prelude> nan <= nan
+False
+Prelude> nan < nan
+False
+Prelude> compare nan nan
+GT
+```
+
 ## Real Double
 
 ``` Haskell
-> let nan = read "NaN" :: Double
+Prelude> let nan = read "NaN" :: Double
 Prelude> toRational nan
 (-269653970229347386159395778618353710042696546841345985910145121736599013708251444699062715983611304031680170819807090036488184653221624933739271145959211186566651840137298227914453329401869141179179624428127508653257226023513694322210869665811240855745025766026879447359920868907719574457253034494436336205824) % 1
 Prelude> realToFrac nan -- With -O0
