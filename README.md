@@ -4,7 +4,7 @@ This is a collection of Haskell's WATs
 
 ## Eq Double
 
-```
+``` haskell
 Prelude> let nan = read "NaN" :: Double
 Prelude> nan == nan
 False
@@ -14,7 +14,7 @@ True
 
 ## Ord Double
 
-```
+``` haskell
 Prelude> let nan = read "NaN" :: Double
 Prelude> nan >= nan
 False
