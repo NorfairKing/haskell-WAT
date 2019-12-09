@@ -67,8 +67,14 @@ Prelude> ceiling nan :: Int
 ## Num Int
 
 ```
-Prelude> minBound `div` (-1) :: Int
-*** Exception: arithmetic overflow
 Prelude> minBound * (-1) :: Int
 -9223372036854775808
+Prelude> abs (minBound :: Int)
+-9223372036854775808
+Prelude> minBound `div` (-1) :: Int
+*** Exception: arithmetic overflow
+Prelude> minBound `quot` (-1) :: Int
+*** Exception: arithmetic overflow
 ```
+
+Do we want modular arithmetic on `Int` or do we want to throw errors on (over|under)flow?
