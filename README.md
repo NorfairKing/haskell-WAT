@@ -63,6 +63,36 @@ Prelude> floor nan :: Int
 Prelude> ceiling nan :: Int
 0
 ```
+#### Rounding
+```haskell
+main = print (round (1e206 :: Double) :: Int)
+```
+Depending on the ghc optimization flag double rounding overflows differently:
+```haskell
+$ ghc round.hs && ./round
+[1 of 1] Compiling Main             ( round.hs, round.o )
+Linking round ...
+0
+$ ghc -O1 round.hs && ./round
+[1 of 1] Compiling Main             ( round.hs, round.o ) [Optimisation flags changed]
+Linking round ...
+-9223372036854775808
+```
+This is because when optimization is turned on there are rewrite rules that use `double2Int` implemented in C. Therefore all of these potentially have a problem like that:
+```
+{-# RULES
+"properFraction/Double->Integer"    properFraction = properFractionDoubleInteger
+"truncate/Double->Integer"          truncate = truncateDoubleInteger
+"floor/Double->Integer"             floor = floorDoubleInteger
+"ceiling/Double->Integer"           ceiling = ceilingDoubleInteger
+"round/Double->Integer"             round = roundDoubleInteger
+"properFraction/Double->Int"        properFraction = properFractionDoubleInt
+"truncate/Double->Int"              truncate = double2Int
+"floor/Double->Int"                 floor = floorDoubleInt
+"ceiling/Double->Int"               ceiling = ceilingDoubleInt
+"round/Double->Int"                 round = roundDoubleInt
+  #-}
+```
 
 ## Num Int
 
