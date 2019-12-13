@@ -108,3 +108,37 @@ Prelude> minBound `quot` (-1) :: Int
 ```
 
 Do we want modular arithmetic on `Int` or do we want to throw errors on (over|under)flow?
+
+## Enum Rational and Enum Double
+
+`Rational` is an `Enum`, which makes no sense because the `Rational` values are not enumerable in order.
+On top of that:
+
+```
+Prelude> [1..2] :: [Rational]
+[1 % 1,2 % 1]
+Prelude> fromEnum (1 :: Rational)
+1
+Prelude> fromEnum (1.35 :: Rational)
+1
+```
+
+`Double` can be an `Enum`, but it is implemented as a WAT:
+
+```
+Prelude> [1..2] :: [Double]
+[1.0,2.0]
+Prelude> fromEnum (1 :: Double)
+1
+Prelude> fromEnum (1.35 :: Double)
+1
+```
+
+This gets programmers into problem because types like `Micro` _are_ implemented correctly:
+
+```
+Prelude> Import Data.Fixed
+Prelude Data.Fixed> length ([1..2] :: [Micro])
+1000001
+```
+
