@@ -142,3 +142,14 @@ Prelude Data.Fixed> length ([1..2] :: [Micro])
 1000001
 ```
 
+
+## Do block without a monad
+
+This 'just works':
+
+```
+myTest :: Int
+myTest = do
+  let x = 5
+  x
+```
