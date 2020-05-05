@@ -12,7 +12,7 @@ Prelude> nan /= nan
 True
 ```
 
-You might think "That's just the way IEEE 753 floating pointers numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialEq.html).
+You might think "That's just the way IEEE 753 floating point numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialEq.html).
 
 This problem has some interesting nasty side-effects:
 
@@ -48,7 +48,8 @@ Prelude> compare nan nan
 GT
 ```
 
-You might think "That's just the way IEEE 753 floating pointers numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html).
+You might think "That's just the way IEEE 753 floating point numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html).
+In particular, `compare nan nan` being `False` is certainly inconsistent.
 
 ## Real Double
 
