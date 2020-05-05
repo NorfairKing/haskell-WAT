@@ -49,7 +49,7 @@ GT
 ```
 
 You might think "That's just the way IEEE 753 floating point numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html).
-In particular, `compare nan nan` being `False` is certainly inconsistent.
+In particular, `compare nan nan` being `GT` is certainly inconsistent.
 
 ## Real Double
 
