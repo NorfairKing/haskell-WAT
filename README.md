@@ -12,6 +12,26 @@ Prelude> nan /= nan
 True
 ```
 
+You might think "That's just the wai IEEE 753 floating pointers numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialEq.html).
+
+This problem has some interesting nasty side-effects:
+
+* You can never use `Double` as the key in a Map:
+
+```
+Prelude> import qualified Data.Map as M
+Prelude M> M.fromList [(nan, 1), (nan, 2)]
+fromList [(NaN,1),(NaN,2)]
+```
+
+* You can never use `Double` as the key in a HashMap:
+
+```
+Prelude> import qualified Data.HashMap.Strict as HM
+Prelude HM> HM.fromList [(nan, 1), (nan, 2)]
+fromList [(NaN,1),(NaN,2)]
+```
+
 ## Ord Double
 
 ``` haskell
@@ -27,6 +47,8 @@ False
 Prelude> compare nan nan
 GT
 ```
+
+You might think "That's just the wai IEEE 753 floating pointers numbers work.", and I would agree with you if [Rust hadn't done it right](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html).
 
 ## Real Double
 
