@@ -176,3 +176,22 @@ myTest = do
   let x = 5
   x
 ```
+
+## Text round trip
+
+`Text` values can only contain valid Unicode, so `Char` values from U+D800 to U+DFFF are replaced by U+FFFD, the replacement character.
+
+``` hs
+>>> any (\ char -> [char] == Text.unpack (Text.pack [char])) ['\xd800' .. '\xdfff']
+False
+```
+
+This means that round-tripping a `String` through `Text` may not give you what you started with.
+
+``` hs
+>>> let string = "haskell \xd800 wat"
+>>> string
+"haskell \55296 wat"
+>>> Text.pack string
+"haskell \65533 wat"
+```
