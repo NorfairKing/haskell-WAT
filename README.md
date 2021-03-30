@@ -2,6 +2,8 @@
 
 This is a collection of Haskell's WATs
 
+See also [the list of dangerous functions](https://github.com/NorfairKing/haskell-dangerous-functions).
+
 ## Eq Double
 
 ``` haskell
