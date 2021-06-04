@@ -201,7 +201,7 @@ This means that round-tripping a `String` through `Text` may not give you what y
 ## `Fixed` precision
 
 [`Fixed`](https://hackage.haskell.org/package/base-4.15.0.0/docs/Data-Fixed.html) data types can silently lose precision from literal values.
-For example the `Centi` type is supposed to have one digit of precision.
+For example the `Centi` type is supposed to have one decimal of precision.
 Literals values are truncated without warning.
 
 ``` hs
