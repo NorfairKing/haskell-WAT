@@ -197,3 +197,20 @@ This means that round-tripping a `String` through `Text` may not give you what y
 >>> Text.pack string
 "haskell \65533 wat"
 ```
+
+## `Fixed` precision
+
+[`Fixed`](https://hackage.haskell.org/package/base-4.15.0.0/docs/Data-Fixed.html) data types can silently lose precision from literal values.
+For example the `Centi` type is supposed to have one decimal of precision.
+Literals values are truncated without warning.
+
+``` hs
+>>> 1.21 :: Centi
+1.2
+>>> 1.29 :: Centi
+1.2
+```
+
+The [`overflowed-literals`](https://downloads.haskell.org/~ghc/9.0.1/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals) warning catches this for integral values.
+Unfortunately it doesn't work for fixed- or floating-point values.
+<https://gitlab.haskell.org/ghc/ghc/-/issues/13232>
