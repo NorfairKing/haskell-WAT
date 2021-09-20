@@ -217,7 +217,7 @@ Unfortunately it doesn't work for fixed- or floating-point values.
 
 ## Foldable tuples
 
-The WAT here is not the behaviour per se (because you can figure that out from the kind of Foldable), but rather that someone thought this was a good idea.
+The WAT here is not the behaviour per se (because you can figure that out from the kind of Foldable), but rather that someone thought this instance was a good idea.
 
 ```
 Prelude> length ('a','b')
@@ -230,3 +230,18 @@ Prelude> sum (2,1)
 1
 ```
 
+## Foldable `Complex`
+
+No one use these, as far as I can tell, so it doesn't really matter, but these are amazing.
+Just so you know, `a :+ b` is the value that represents `a + ib`.
+
+```
+Prelude Data.Complex> length (1 :+ 1) -- 1 + 1i
+2
+Prelude Data.Complex> null (0 :+ 0) -- 0 + 0i
+False
+Prelude Data.Complex> sum (2 :+ 2) -- 2 + 2i
+4
+Prelude Data.Complex> product (3 :+ 3) -- 3 + 3i
+9
+```
