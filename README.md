@@ -214,3 +214,19 @@ Literals values are truncated without warning.
 The [`overflowed-literals`](https://downloads.haskell.org/~ghc/9.0.1/docs/html/users_guide/using-warnings.html#ghc-flag--Woverflowed-literals) warning catches this for integral values.
 Unfortunately it doesn't work for fixed- or floating-point values.
 <https://gitlab.haskell.org/ghc/ghc/-/issues/13232>
+
+## Foldable tuples
+
+The WAT here is not the behaviour per se (because you can figure that out from the kind of Foldable), but rather that someone thought this was a good idea.
+
+```
+Prelude> length ('a','b')
+1
+Prelude> maximum (2,1)
+1
+Prelude> minimum (1,2)
+2
+Prelude> sum (2,1)
+1
+```
+
