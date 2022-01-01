@@ -228,6 +228,10 @@ Prelude> minimum (1,2)
 2
 Prelude> sum (2,1)
 1
+Prelude> and (False, True)
+True
+Prelude> or (True, False)
+False
 ```
 
 ## Foldable `Complex`
