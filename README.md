@@ -167,6 +167,21 @@ Prelude Data.Fixed> length ([1..2] :: [Micro])
 1000001
 ```
 
+## `Ratio` with fixed-size underlying types
+
+(Recall (from the docs); "The numerator and denominator have no common factor and the denominator is positive.")
+
+You can end up with invalid `Ratio` values using `Num` functions:
+
+```
+Prelude Data.Int Data.Ratio> let r = 1 % 12 :: Ratio Int8
+Prelude Data.Int Data.Ratio> r - r
+0 % (-1)
+Prelude Data.Int Data.Ratio> r + r
+3 % (-14)
+> r * r
+1 % (-112)
+```
 
 ## Do block without a monad
 
