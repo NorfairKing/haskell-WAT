@@ -220,9 +220,9 @@ For example the `Centi` type is supposed to have one decimal of precision.
 Literals values are truncated without warning.
 
 ``` hs
->>> 1.21 :: Centi
+>>> 1.21 :: Deci
 1.2
->>> 1.29 :: Centi
+>>> 1.29 :: Deci
 1.2
 ```
 
