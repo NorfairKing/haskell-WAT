@@ -4,6 +4,47 @@ This is a collection of Haskell's WATs
 
 See also [the list of dangerous functions](https://github.com/NorfairKing/haskell-dangerous-functions).
 
+## Read instances for integral types
+
+These instances use [`fromIntegral`, which is a dangerous function](https://github.com/NorfairKing/haskell-dangerous-functions#fromintegral-and-frominteger).
+
+```
+ghci> import Data.Word
+ghci> import Data.Int
+ghci> read "128" :: Int8
+-128
+ghci> read "256" :: Word8
+0
+ghci> read "60000" :: Int16
+-5536
+ghci> read "70000" :: Word16
+4464
+ghci> read "2147483649" :: Int32
+-2147483647
+ghci> read "42147483649" :: Word32
+3492777985
+ghci> read "5000000000000000000000" :: Int64
+932356024711512064
+ghci> read "18446744073709551617" :: Word
+1
+ghci> read "18446744073709551617" :: Int
+1
+ghci> read "28446744073709551617" :: Word
+10000000000000000001
+ghci> read "-1" :: Word8
+255
+ghci> read "-1" :: Word16
+65535
+ghci> read "-1" :: Word32
+4294967295
+ghci> read "-1" :: Word64
+18446744073709551615
+ghci> read "-1" :: Word
+18446744073709551615
+```
+
+There's a [GHC issue about fixing this](https://gitlab.haskell.org/ghc/ghc/-/issues/24216).
+
 ## Eq Double
 
 ``` haskell
