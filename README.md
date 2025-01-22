@@ -305,3 +305,15 @@ Prelude Data.Complex> sum (2 :+ 2) -- 2 + 2i
 Prelude Data.Complex> product (3 :+ 3) -- 3 + 3i
 9
 ```
+
+### HasCallStack
+
+The `HasCallStack` constraint can change a program's semantics based on where it is:
+
+```
+what :: (HasCallStack) => Int                                 
+what = srcLocStartCol (snd (head (getCallStack callStack)))  
+                                                              
+main :: IO ()                                                 
+main = print (what + what) -- Prints "27"
+```
